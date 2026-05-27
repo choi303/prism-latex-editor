@@ -1,0 +1,1 @@
+export const prismUiPackage = "@prism/ui";

@@ -1,0 +1,4 @@
+
+> api@0.1.0 typecheck H:\Downloads\prism\apps\api
+> tsc --noEmit -p tsconfig.json
+
