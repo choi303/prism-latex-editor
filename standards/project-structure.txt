@@ -20,7 +20,7 @@ MONOREPO LAYOUT
         reports/                Analysis reports and investigations
         skills/                 AI assistant skill definitions
         .claude/
-            skills/             Claude Code skill files
+            skills/             AI assistant skill files
         turbo.json              Turborepo pipeline configuration
         package.json            Root workspace config
         pnpm-lock.yaml          Lockfile

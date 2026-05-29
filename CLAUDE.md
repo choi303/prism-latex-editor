@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Guidance for Claude Code in this repository.
+Guidance for AI assistants working in this repository.
 
 ## Overview
 
@@ -36,7 +36,7 @@ Standards are in `standards/` folder (plain text, not markdown):
 
 ## Skills
 
-Claude Code skills in `.claude/skills/`:
+AI skills in `.claude/skills/`:
 - `execute-task` - Execute tasks from tasks/ following 6-stage workflow
 - `create-task` - Create new task specifications
 - `write-report` - Write analysis reports to files
