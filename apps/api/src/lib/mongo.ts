@@ -6,8 +6,7 @@ export function connectMongo(uri: string) {
   if (!connectionPromise) {
     connectionPromise = mongoose.connect(uri, {
       autoIndex: true,
-      maxPoolSize: 10
-    });
+    } as any);
   }
 
   return connectionPromise;
