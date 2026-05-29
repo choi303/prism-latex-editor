@@ -1,0 +1,74 @@
+REPORT FORMAT
+=============
+
+Date: 2026-05-29
+Status: ACTIVE STANDARD
+
+================================================================================
+FILE NAMING
+================================================================================
+
+Pattern: YYMMDD.report-name.txt
+
+    YYMMDD          6-digit date
+    report-name     kebab-case descriptive name
+
+Location: reports/ folder
+
+Examples:
+    260529.api-endpoint-audit.txt
+    260530.compile-cache-performance.txt
+    260601.workspace-accessibility-review.txt
+
+================================================================================
+FORMAT RULES
+================================================================================
+
+Plain text only. No markdown.
+
+Headers:     Use ==== or ---- separator lines
+Subsections: Numbered (1.1, 1.2, 1.3)
+Lists:       Indentation or numbered items
+Code:        Indent with 4 spaces
+Emphasis:    UPPERCASE
+
+BANNED formatting:
+    # headers
+    **bold**
+    - bullet points (use indentation or numbers instead)
+    ```code fences```
+    | tables |
+
+================================================================================
+REPORT STRUCTURE
+================================================================================
+
+Every report must include:
+
+    1. Title and date at the top
+    2. Purpose (why this report exists, one paragraph)
+    3. Findings (the actual content, numbered sections)
+    4. Summary (key takeaways, actionable items)
+
+================================================================================
+GROUNDED LANGUAGE
+================================================================================
+
+All reports must use precise, grounded language.
+
+WRONG (vague):
+    "the endpoint has issues"
+    "some components need fixing"
+    "it fails sometimes"
+
+CORRECT (grounded):
+    "POST /v1/latex/compile returns 502 when latex input exceeds 5MB"
+    "LatexWorkspace component re-renders on every keystroke due to unthrottled onChange"
+    "compileLatexProject() in latex.service.ts throws on empty Redis config 40% of test runs"
+
+Rules:
+    1. Name exact files, functions, endpoints, components
+    2. Use file.ts:line-number notation for code references
+    3. Use "N of M" format for counts (3 of 7 endpoints, not "some endpoints")
+    4. Include error codes, HTTP status codes, exact messages
+    5. Never use "it", "this", "the thing" without a named referent

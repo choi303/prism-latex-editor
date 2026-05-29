@@ -1,0 +1,125 @@
+CODING STANDARDS
+================
+
+Date: 2026-05-29
+Status: ACTIVE STANDARD
+
+================================================================================
+LANGUAGE AND FRAMEWORK
+================================================================================
+
+Backend (apps/api):
+    Language:   TypeScript (strict mode)
+    Runtime:    Node.js
+    Framework:  Fastify 5
+    Database:   MongoDB via Mongoose
+    Cache:      Upstash Redis
+    Validation: Zod
+
+Frontend (apps/web):
+    Language:   TypeScript
+    Framework:  Next.js 16 (App Router)
+    UI:         React 19, Tailwind CSS 4
+    State:      Zustand
+    Editor:     Monaco Editor
+    HTTP:       TanStack React Query
+
+Package manager: pnpm (monorepo with Turborepo)
+
+================================================================================
+FILE ORGANIZATION
+================================================================================
+
+    1. One component per file
+    2. File name must match the primary export
+    3. Group by feature module, not by file type
+
+    Correct:
+        modules/latex/latex.service.ts
+        modules/latex/latex.routes.ts
+        modules/latex/latex.prompt.ts
+
+    Wrong:
+        services/latex.ts
+        routes/latex.ts
+
+================================================================================
+NAMING CONVENTIONS
+================================================================================
+
+Files:
+    kebab-case              latex-workspace.tsx, chat.service.ts
+
+Variables and functions:
+    camelCase               compileLatex, projectId, cacheKey
+
+Types and interfaces:
+    PascalCase              CompileInput, LatexProject, AssistResult
+
+Constants:
+    UPPER_SNAKE_CASE        MAX_FILE_SIZE, CACHE_TTL_SECONDS
+
+React components:
+    PascalCase              LatexWorkspace, CommandPalette
+
+Zod schemas:
+    camelCase + Schema      compileSchema, createProjectSchema
+
+Route files:
+    feature.routes.ts       chat.routes.ts, latex.routes.ts
+
+Service files:
+    feature.service.ts      chat.service.ts, latex.service.ts
+
+================================================================================
+API CONVENTIONS
+================================================================================
+
+    1. All routes under /v1/ prefix
+    2. Use Zod for request body validation
+    3. Return { data: ... } for success responses
+    4. Return { error: ... } for error responses
+    5. Use appropriate HTTP status codes (200, 201, 400, 404, 500, 502)
+    6. Service layer handles business logic, routes handle HTTP concerns
+
+================================================================================
+ERROR HANDLING
+================================================================================
+
+    1. Validate inputs at route level with Zod
+    2. Service functions throw Error with descriptive messages
+    3. Routes catch errors and return appropriate HTTP status
+    4. Never expose stack traces in production responses
+
+================================================================================
+IMPORTS
+================================================================================
+
+    1. Node built-ins first (node:crypto, node:fs)
+    2. External packages second (fastify, mongoose, zod)
+    3. Internal imports last (relative paths)
+    4. Blank line between each group
+
+================================================================================
+TYPESCRIPT
+================================================================================
+
+    1. Use explicit types for function parameters and return values
+    2. Prefer type over interface
+    3. Use Zod schemas for runtime validation, TypeScript types for compile-time
+    4. No any unless absolutely necessary (document why)
+
+================================================================================
+GIT CONVENTIONS
+================================================================================
+
+Branch naming:
+    dev-[username]-[description]
+
+Commit messages:
+    Imperative mood ("add feature" not "added feature")
+    No emojis
+    No AI tool mentions
+
+Never push directly to main. Always use pull requests.
+Never rebase. Use merge.

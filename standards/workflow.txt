@@ -1,0 +1,99 @@
+AI DEVELOPMENT WORKFLOW
+=======================
+
+Date: 2026-05-29
+Status: ACTIVE STANDARD
+
+================================================================================
+OVERVIEW
+================================================================================
+
+All non-trivial tasks follow a staged workflow. The number of stages depends
+on task complexity. Simple bug fixes may skip research and planning. Large
+features require all stages.
+
+================================================================================
+MANDATORY 6-STAGE WORKFLOW
+================================================================================
+
+    STAGE 1: RESEARCH
+        Understand requirements, explore relevant code, identify dependencies.
+        Read files before proposing changes. Never guess.
+
+    STAGE 2: PLANNING
+        Create a plan with specific file paths and changes.
+        Break into steps. Track progress.
+
+    STAGE 3: PLAN REVIEW (MANDATORY STOP)
+        Present the plan to the developer.
+        Wait for explicit approval before proceeding.
+        Never implement without approval.
+
+    STAGE 4: IMPLEMENTATION
+        Follow the approved plan.
+        Build frequently to catch errors early.
+        Commit logically (one concern per commit).
+
+    STAGE 5: VERIFICATION
+        Test the changes. Run the dev server. Check in browser.
+        Verify edge cases. Ensure no regressions.
+
+    STAGE 6: CODE REVIEW
+        Review against coding standards.
+        Check for security issues (XSS, injection, exposed secrets).
+        Verify naming conventions and file organization.
+
+================================================================================
+WHEN TO USE FULL WORKFLOW
+================================================================================
+
+Full workflow (all 6 stages):
+    New features spanning multiple files
+    Architectural changes
+    Database schema changes
+    API endpoint additions or modifications
+
+Abbreviated workflow (skip research/planning):
+    One-line bug fixes in known files
+    Simple configuration changes
+    Typo corrections
+
+================================================================================
+KEY RULES
+================================================================================
+
+    1. Never implement without reading relevant code first
+    2. Never skip plan review for non-trivial changes
+    3. Never skip verification (run dev server, test in browser)
+    4. Always present options when multiple approaches exist
+    5. Never decide unilaterally on architecture choices
+    6. Build and test before claiming a task is done
+
+================================================================================
+TASK EXECUTION
+================================================================================
+
+When executing a task from tasks/ folder:
+
+    1. Read the task specification
+    2. Follow the workflow stages above
+    3. Create a feature branch (dev-[user]-task[N])
+    4. Implement and verify
+    5. Create a pull request
+    6. Mark the task folder as .done (rename suffix)
+
+A task is not complete until:
+    The folder has been renamed to .done
+    All acceptance criteria in the specification are met
+    Changes are submitted via pull request
+
+================================================================================
+FAILURE REPORTING
+================================================================================
+
+If a task fails at any stage, document:
+    1. What was attempted
+    2. What was expected
+    3. What actually happened
+    4. Why it failed
+    5. Suggested next steps
