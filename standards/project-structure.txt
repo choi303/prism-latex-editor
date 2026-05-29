@@ -1,0 +1,101 @@
+PROJECT STRUCTURE
+=================
+
+Date: 2026-05-29
+Status: ACTIVE STANDARD
+
+================================================================================
+MONOREPO LAYOUT
+================================================================================
+
+    prism-latex-editor/
+        apps/
+            api/                Fastify backend (port 4000)
+            web/                Next.js frontend (port 3000)
+        packages/
+            config/             Shared configuration (ESLint, TypeScript)
+            ui/                 Shared UI components
+        standards/              Coding standards and conventions (plain text)
+        tasks/                  Task specifications and tracking
+        reports/                Analysis reports and investigations
+        skills/                 AI assistant skill definitions
+        .claude/
+            skills/             Claude Code skill files
+        turbo.json              Turborepo pipeline configuration
+        package.json            Root workspace config
+        pnpm-lock.yaml          Lockfile
+
+================================================================================
+APP STRUCTURE: API (apps/api/)
+================================================================================
+
+    apps/api/
+        src/
+            config/             Environment configuration (env.ts)
+            db/
+                schemas/        Mongoose model schemas
+            lib/                Shared utilities (mongo.ts, redis.ts)
+            modules/
+                chat/           Chat routes and service
+                files/          File upload routes and service
+                health/         Health check route
+                latex/          LaTeX compile, project CRUD, AI assist
+                models/         Model lane configuration
+                prompts/        Saved prompt management
+            app.ts              Fastify app builder
+            server.ts           Entry point
+        .env                    Environment variables (not committed)
+        .env.example            Template for environment variables
+
+================================================================================
+APP STRUCTURE: WEB (apps/web/)
+================================================================================
+
+    apps/web/
+        src/
+            app/                Next.js App Router pages
+                workspace/      Main workspace page
+            components/
+                latex/          LaTeX workspace component
+                site/           Landing page components
+            lib/                API client, utilities
+            store/              Zustand state management
+
+================================================================================
+MODULE PATTERN (API)
+================================================================================
+
+Each feature module contains:
+
+    feature.routes.ts       Fastify route handlers (HTTP layer)
+    feature.service.ts      Business logic (no HTTP concerns)
+    feature.prompt.ts       AI prompt builders (if applicable)
+
+Routes handle:
+    Request parsing and validation (Zod)
+    HTTP status codes and response formatting
+    Error catching and response mapping
+
+Services handle:
+    Database queries
+    External API calls
+    Business rules and transformations
+
+================================================================================
+ADDING NEW FEATURES
+================================================================================
+
+When adding a new API feature:
+    1. Create module folder under apps/api/src/modules/
+    2. Create routes file and service file
+    3. Register routes in apps/api/src/app.ts
+    4. Add Zod schemas for request validation
+
+When adding a new page:
+    1. Create folder under apps/web/src/app/
+    2. Add page.tsx with the route component
+    3. Add components under apps/web/src/components/
+
+When adding shared types or utilities:
+    1. Use packages/config/ for build configuration
+    2. Use packages/ui/ for shared React components

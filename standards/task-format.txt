@@ -1,0 +1,88 @@
+TASK SPECIFICATION FORMAT
+========================
+
+Date: 2026-05-29
+Status: ACTIVE STANDARD
+
+================================================================================
+FOLDER NAMING
+================================================================================
+
+Pattern: YYMMDD.task-NNNN.description.pending
+
+    YYMMDD      6-digit date (year-month-day)
+    task-NNNN   sequential task number
+    description kebab-case short description
+    pending     status suffix
+
+Status suffixes:
+    .pending        not started
+    .in-progress    claimed and being worked on
+    .done           completed
+
+Examples:
+    260529.task-0001.fix-compile-endpoint-error-handling.pending
+    260530.task-0002.add-dark-mode-support.in-progress
+    260530.task-0002.add-dark-mode-support.done
+
+================================================================================
+SPECIFICATION FILE
+================================================================================
+
+File name: task-NNNN.00-specification.txt
+Location: inside the task folder
+
+Format (plain text, no markdown):
+
+    task-NNNN
+    short description of the task
+    YYMMDD
+    target app (api, web, or both)
+    category (feature, bugfix, refactoring, investigation, report)
+
+    source: where the task came from
+    quote: exact quote if applicable
+
+    context
+        background information
+        what currently exists
+        why this task matters
+
+    objective
+        what needs to be done
+        specific deliverables
+
+    acceptance criteria
+        measurable conditions that define done
+        how to verify the task is complete
+
+================================================================================
+ADDITIONAL FILES
+================================================================================
+
+Tasks may include additional files as work progresses:
+
+    task-NNNN.01-research.txt       research notes
+    task-NNNN.02-plan.txt           implementation plan
+    task-NNNN.03-verification.txt   verification results
+    task-NNNN.04-review.txt         code review notes
+
+================================================================================
+TASK NUMBERING
+================================================================================
+
+Sequential from 0001. To find the next number:
+    1. List all task folders in tasks/
+    2. Find the highest task number
+    3. Add 1
+
+Never skip numbers. Never reuse numbers.
+
+================================================================================
+TASK COMPLETION
+================================================================================
+
+When a task is done:
+    1. Rename folder suffix from .pending or .in-progress to .done
+    2. Ensure all acceptance criteria are met
+    3. Commit the rename
